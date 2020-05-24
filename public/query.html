@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Query API</title>
+
+</head>
+
+<body class="bg-gray-900 p-8">
+
+    <div class="flex mb-2">
+        <input type="text" name="database" id="database" value="farm" class="flex-1 border bg-teal-900 text-white px-3 py-1">
+        <input type="text" name="collection" id="collection" value="animals" class="flex-1 border bg-teal-900 text-white px-3 py-1">
+        <input type="text" name="method" id="method" value="aggregate" class="flex-1 border bg-teal-900 text-white px-3 py-1">
+        <button id="run" class="bg-blue-700 hover:bg-blue-600 text-white py-1 px-12 ml-auto">Run</button>
+    </div>
+
+    <div class="flex -mx-2">
+        <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
+            <textarea name="query" id="query"></textarea>
+        </div>
+        <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
+            <textarea name="options" id="options"></textarea>
+        </div>
+    </div>
+    <textarea name="result" id="result"></textarea>
+
+    <script src="query.js"></script>
+</body>
+
+</html>
