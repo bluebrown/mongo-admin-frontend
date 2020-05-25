@@ -33,8 +33,8 @@ queryButton.onclick = async () => {
   try {
     const res = await fetch('http://localhost:7020/api/v0/load', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fileContent: editor.getDoc().getValue() }),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: Buffer.from(editor.getDoc().getValue()),
     })
 
     const results = await res.json()
