@@ -1,20 +1,25 @@
-table.cardview {
+thead th {
+
+}
+table.gridview {
+  .elips {@apply hidden}
+  thead {@apply hidden}
   @apply  flex flex-col;
 
   tbody {
-    @apply flex flex-wrap -mx-4;
+    @apply flex flex-wrap -mx-3;
   
     tr {
-      @apply flex flex-col mb-4 border mx-4;
+      @apply flex flex-col mb-4 min-w-0 px-3 w-1/3;
 
       td {
-        @apply flex p-3;
+        @apply flex p-3 border-l border-r bg-white;
 
         &:first-child {
-          @apply flex bg-gray-100 border-b;
+          @apply flex bg-gray-100 border;
         }
         &:last-child {
-          @apply flex bg-gray-100 font-semibold p-0;
+          @apply flex bg-gray-100 font-semibold p-0 border border-t-0;
         }
       }
 
@@ -22,4 +27,17 @@ table.cardview {
 
   }
 
+}
+
+th, td {
+  @apply text-gray-800
+}
+
+table:not(.gridview) {
+  th {@apply font-normal}
+  td, th {@apply p-3 text-left}
+  tbody {
+    tr {@apply bg-white}
+  }
+  .buttons {@apply hidden}
 }

@@ -3,5 +3,5 @@ import './index.css'
 
 
 document.getElementById('viewtoggle').onclick = () => {
-  document.getElementById('datatable').classList.toggle('cardview')
+  document.getElementById('datatable').classList.toggle('gridview')
 }

@@ -34,40 +34,57 @@
 
         <section class="flex-1 mx-6">
 
-          <header class="flex mb-6 items-center">
+          <header class="flex mb-4 items-center">
             <h1 class="text-xl font-semibold">Databases</h1>
             <div class="flex flex-1 justify-end">
               <button id="viewtoggle" class="p-3 border">Toggle View</button>
             </div>
           </header>
 
-          <table id="datatable" class="w-full cardview">
+          <table id="datatable" class="w-full gridview">
+            <thead>
+              <tr class="bg-gray-100">
+                <th>Name</th>
+                <th>Size</th>
+                <th>Collections</th>
+                <th></th>
+              </tr>
+            </thead>
             <tbody>
-              <tr class="bg-white">
+              <tr class="">
                 <td class="font-semibold">RandomDatabaseName</td>
                 <td>1394mb</td>
                 <td>13 Collection</td>
                 <td>
-                  <button class="flex-1 text-center p-3">action</button>
-                  <button class="flex-1 text-center p-3">action</button>
+                  <div class="buttons">
+                    <button class="flex-1 text-center p-3">action</button>
+                    <button class="flex-1 text-center p-3">action</button>
+                  </div>
+                  <div class="elips"><button>...</button></div>
                 </td>
               </tr>
-              <tr class="bg-white">
+              <tr class="">
                 <td class="font-semibold">RandomDatabaseName</td>
                 <td>1394mb</td>
                 <td>13 Collection</td>
                 <td>
-                  <button class="flex-1 text-center p-3">action</button>
-                  <button class="flex-1 text-center p-3">action</button>
+                  <div class="buttons">
+                    <button class="flex-1 text-center p-3">action</button>
+                    <button class="flex-1 text-center p-3">action</button>
+                  </div>
+                  <div class="elips"><button>...</button></div>
                 </td>
               </tr>
-              <tr class="bg-white">
+              <tr class="">
                 <td class="font-semibold">RandomDatabaseName</td>
                 <td>1394mb</td>
                 <td>13 Collection</td>
                 <td>
-                  <button class="flex-1 text-center p-3">action</button>
-                  <button class="flex-1 text-center p-3">action</button>
+                  <div class="buttons">
+                    <button class="flex-1 text-center p-3">action</button>
+                    <button class="flex-1 text-center p-3">action</button>
+                  </div>
+                  <div class="elips"><button>...</button></div>
                 </td>
               </tr>
             </tbody>
