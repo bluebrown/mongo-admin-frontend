@@ -14,6 +14,8 @@ import 'codemirror/addon/hint/show-hint';
 import 'codemirror/addon/selection/active-line'
 
 import '../shared/tailwind.css'
+import '../shared/styles/mirror.css'
+import './load.css'
 
 const resultArea = document.getElementById('section-load-result') as HTMLTextAreaElement | undefined;
 const result = CodeMirror.fromTextArea(resultArea, { ...baseConf, readOnly: true });

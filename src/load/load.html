@@ -13,10 +13,17 @@
 <body class="bg-gray-900 p-8" aria-label="Mongo Admin">
 
   <section>
-    <div class="flex w-1/2 pr-2  mb-2">
-      <h1 class="text-xl text-white pb-2">Script Runner</h1>
-      <button id="query" class="bg-blue-700 hover:bg-blue-600 text-white py-1 px-4 rounded-md ml-auto">Run</button>
+
+    <div class="flex -mx-2">
+      <div class="mb-2 mx-2 w-1/2 h-full flex pr-4">
+        <h1 class="text-xl text-white pb-2">Script</h1>
+        <button id="query" class="bg-blue-700 hover:bg-blue-600 text-white py-1 px-4 rounded-md ml-auto">Run</button>
+      </div>
+      <div class="mb-2 mx-2 w-1/2 h-full">
+        <h2 class="text-xl text-white pb-2">Result</h2>
+      </div>
     </div>
+
     <div class="flex -mx-2">
       <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
         <textarea name="editor" id="section-load-editor"></textarea>

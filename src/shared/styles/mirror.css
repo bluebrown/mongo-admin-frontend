@@ -1,0 +1,53 @@
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.CodeMirror {
+  height: 80vh;
+}
+
+.CodeMirror-foldmarker {    
+  font-family: arial;
+}
+.CodeMirror-foldgutter {
+  width: .7em;
+}
+.CodeMirror-foldgutter-open,
+.CodeMirror-foldgutter-folded {
+  color: #555;
+  cursor: pointer;
+}
+.CodeMirror-foldgutter-open:after {
+  content: "\25BE";
+}
+.CodeMirror-foldgutter-folded:after {
+  content: "\25B8";
+}
+
+.CodeMirror-hint {
+  @apply text-white;
+}
+
+.CodeMirror-hints {
+  @apply bg-purple-900;
+}
+
+.CodeMirror-hint-active {
+  color: rgb(180, 180, 238);
+}
