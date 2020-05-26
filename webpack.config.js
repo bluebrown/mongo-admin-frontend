@@ -15,26 +15,29 @@ module.exports = {
   devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Script Runner',
+      title: 'Dashboard',
       template:'./src/index.html',
       filename: 'index.html',
       chunks: ['index'],
     }),
     new HtmlWebpackPlugin({
-      title: 'Script Load',
-      template: './src/load/load.html',
+      title: 'Load Script',
+      template:'./src/index.html',
+      // template: './src/load/load.html',
       filename: 'load.html',
       chunks: ['load'],
     }),
     new HtmlWebpackPlugin({
       title: 'Web Shell',
-      template: './src/shell/shell.html',
+      template:'./src/index.html',
+      // template: './src/shell/shell.html',
       filename: 'shell.html',
       chunks: ['shell'],
     }),
     new HtmlWebpackPlugin({
       title: 'Query API',
-      template: './src/query/query.html',
+      template:'./src/index.html',
+      // template: './src/query/query.html',
       filename: 'query.html',
       chunks: ['query'],
     }),
@@ -52,7 +55,7 @@ module.exports = {
               ident: 'postcss',
               plugins: [
                 require('precss'),
-                require('tailwindcss'),
+                require('tailwindcss')('./tailwind.config.js'),
                 require('autoprefixer'),
               ],
             },

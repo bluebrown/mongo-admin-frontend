@@ -17,6 +17,10 @@ import '../shared/tailwind.css'
 import '../shared/styles/mirror.css'
 import './load.css'
 
+const templ = document.getElementById('loadtemplate') as HTMLTemplateElement
+
+document.querySelector('main').append(templ.content.cloneNode(true))
+
 const resultArea = document.getElementById('section-load-result') as HTMLTextAreaElement | undefined;
 const result = CodeMirror.fromTextArea(resultArea, { ...baseConf, readOnly: true });
 

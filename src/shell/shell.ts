@@ -2,6 +2,10 @@ import '../shared/tailwind.css'
 import 'xterm/css/xterm.css'
 import{Terminal} from 'xterm'
 
+const templ = document.getElementById('shelltemplate') as HTMLTemplateElement
+
+document.querySelector('main').append(templ.content.cloneNode(true))
+
 const client = require('socket.io-client')
 const socket = client.connect('http://localhost:7020');
 const ss = require('socket.io-stream');

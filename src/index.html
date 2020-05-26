@@ -10,98 +10,69 @@
 
 </head>
 
-<body class="h-screen" aria-label="Mongo Admin">
+<body class="h-screen max-w-sreen overflow-x-hidden" aria-label="Mongo Admin">
 
   <div class="flex h-full">
 
     <nav class="flex flex-col h-full w-56 border-r bg-gray-800 text-white">
-      <div class="h-20">
-        sidebar head
+      <div class="h-20 p-6 text-center">
+       <h1 class="text-xl font-semibold"><%= htmlWebpackPlugin.options.title %></h1>
       </div>
 
-      item
+      <ul class="flex flex-col items-center justify-center ">
+        <li class=""><a href="./index.html">Home</a></li>
+        <li class=""><a href="./shell.html">Web Shell</a></li>
+        <li class=""><a href="./load.html">Load Script</a></li>
+        <li class=""><a href="./query.html">Execute Query</a></li>
+
+      </ul>
+
 
     </nav>
 
     <section class="h-full  bg-gray-200  flex-1 flex-col">
 
-      <div class="h-20 border-b flex bg-white">
-        search
+      <div class="h-20 border-b flex bg-white items-center p-6">
+  
+          <div class="w-16">
+            <span class="border-b mb-3 block"></span>
+            <span class="border-b mb-3 block"></span>
+            <span class="border-b mb-3 block"></span>
+          </div>
+
+          <div class="flex flex-1 bg-gray-200 p-1 mx-3 group">
+            <div class="flex items-center justify-center p-1">
+              <svg class="fill-current w-4 h-4 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M21.172 24l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z" />
+            </svg>
+          </div>
+            <input class="
+              bg-transparent
+              border-dotted
+              border-2 
+              outline-none 
+              border-opacity-0 
+              hover:border-opacity-50 
+              focus:border-opacity-100 
+              flex-1
+              p-1
+              " 
+              type="text" placeholder="search here">
+          </div>
+
+
+          <div class="w-16">
+            <span class="border-b mb-3 block"></span>
+            <span class="border-b mb-3 block"></span>
+            <span class="border-b mb-3 block"></span>
+          </div>
+
+
+
       </div>
 
 
       <main class="flex-1 flex py-12 px-24 -mx-6">
-
-        <section class="flex-1 mx-6">
-
-          <header class="flex mb-4 items-center">
-            <h1 class="text-xl font-semibold">Databases</h1>
-            <div class="flex flex-1 justify-end">
-              <button id="viewtoggle" class="p-3 border">Toggle View</button>
-            </div>
-          </header>
-
-          <table id="datatable" class="w-full gridview">
-            <thead>
-              <tr class="bg-gray-100">
-                <th>Name</th>
-                <th>Size</th>
-                <th>Collections</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="">
-                <td class="font-semibold">RandomDatabaseName</td>
-                <td>1394mb</td>
-                <td>13 Collection</td>
-                <td>
-                  <div class="buttons">
-                    <button class="flex-1 text-center p-3">action</button>
-                    <button class="flex-1 text-center p-3">action</button>
-                  </div>
-                  <div class="elips"><button>...</button></div>
-                </td>
-              </tr>
-              <tr class="">
-                <td class="font-semibold">RandomDatabaseName</td>
-                <td>1394mb</td>
-                <td>13 Collection</td>
-                <td>
-                  <div class="buttons">
-                    <button class="flex-1 text-center p-3">action</button>
-                    <button class="flex-1 text-center p-3">action</button>
-                  </div>
-                  <div class="elips"><button>...</button></div>
-                </td>
-              </tr>
-              <tr class="">
-                <td class="font-semibold">RandomDatabaseName</td>
-                <td>1394mb</td>
-                <td>13 Collection</td>
-                <td>
-                  <div class="buttons">
-                    <button class="flex-1 text-center p-3">action</button>
-                    <button class="flex-1 text-center p-3">action</button>
-                  </div>
-                  <div class="elips"><button>...</button></div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-
-        <aside class="mx-6 w-64">
-
-          <article class="border bg-white rounded-sm p-6">
-            <h1 class="font-semibold">Side Stuff</h1>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi maxime hic praesentium voluptas repudiandae
-            accusamus quas perspiciatis reprehenderit, corrupti blanditiis labore dolorum. Vitae possimus porro ratione
-            distinctio assumenda minima hic.
-
-          </article>
-
-        </aside>
 
       </main>
 
@@ -109,6 +80,150 @@
     </section>
 
   </div>
+
+  
+  <template id="indextemplate">
+
+    <section class="flex-1 mx-6">
+
+      <header class="flex mb-4 items-center">
+        <h1 class="text-xl font-semibold">Databases</h1>
+        <div class="flex flex-1 justify-end">
+          <button id="viewtoggle" class="p-3 border">Toggle View</button>
+        </div>
+      </header>
+
+      <table id="datatable" class="w-full gridview">
+        <thead>
+          <tr class="bg-gray-100">
+            <th>Name</th>
+            <th>Size</th>
+            <th>Collections</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="">
+            <td class="font-semibold">RandomDatabaseName</td>
+            <td>1394mb</td>
+            <td>13 Collection</td>
+            <td>
+              <div class="buttons">
+                <button class="flex-1 text-center p-3">action</button>
+                <button class="flex-1 text-center p-3">action</button>
+              </div>
+              <div class="elips"><button>...</button></div>
+            </td>
+          </tr>
+          <tr class="">
+            <td class="font-semibold">RandomDatabaseName</td>
+            <td>1394mb</td>
+            <td>13 Collection</td>
+            <td>
+              <div class="buttons">
+                <button class="flex-1 text-center p-3">action</button>
+                <button class="flex-1 text-center p-3">action</button>
+              </div>
+              <div class="elips"><button>...</button></div>
+            </td>
+          </tr>
+          <tr class="">
+            <td class="font-semibold">RandomDatabaseName</td>
+            <td>1394mb</td>
+            <td>13 Collection</td>
+            <td>
+              <div class="buttons">
+                <button class="flex-1 text-center p-3">action</button>
+                <button class="flex-1 text-center p-3">action</button>
+              </div>
+              <div class="elips"><button>...</button></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <aside class="mx-6 w-64">
+
+      <article class="border bg-white rounded-sm p-6">
+        <h1 class="font-semibold">Side Stuff</h1>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi maxime hic praesentium voluptas repudiandae
+        accusamus quas perspiciatis reprehenderit, corrupti blanditiis labore dolorum. Vitae possimus porro ratione
+        distinctio assumenda minima hic.
+
+      </article>
+
+    </aside>
+
+  </template>
+
+
+  
+  <template id="shelltemplate">
+    <section>
+      <div class="flex w-1/2 pr-2  mb-2">
+        <h1 class="text-xl text-white pb-2">Web Shell</h1>
+      </div>
+  
+      <div id="section-shell-terminal"></div>
+  
+    </section>
+  </template>
+
+  
+  
+  <template id="querytemplate">
+    <section>
+
+      <div class="flex w-1/2 pr-2  mb-2">
+        <h1 class="text-xl text-white pb-2">Query API</h1>
+        <button id="section-query-run" class="bg-blue-700 hover:bg-blue-600 text-white py-1 px-12 ml-auto">Run</button>
+      </div>
+  
+      <div class="flex mb-2">
+        <input type="text" name="database" id="section-query-database" value="farm" class="flex-1 border bg-teal-900 text-white px-3 py-1">
+        <input type="text" name="collection" id="section-query-collection" value="animals" class="flex-1 border bg-teal-900 text-white px-3 py-1">
+        <input type="text" name="method" id="section-query-method" value="aggregate" class="flex-1 border bg-teal-900 text-white px-3 py-1">
+    </div>
+  
+    <div class="flex -mx-2">
+        <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
+            <textarea name="query" id="section-query-query"></textarea>
+        </div>
+        <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
+            <textarea name="options" id="section-query-options"></textarea>
+        </div>
+    </div>
+    <textarea name="result" id="section-query-result"></textarea>
+  
+    </section>
+  </template>
+  
+  
+  
+  <template id="loadtemplate">
+    <section>
+
+      <div class="flex -mx-2">
+        <div class="mb-2 mx-2 w-1/2 h-full flex pr-4">
+          <h1 class="text-xl text-white pb-2">Script</h1>
+          <button id="query" class="bg-blue-700 hover:bg-blue-600 text-white py-1 px-4 rounded-md ml-auto">Run</button>
+        </div>
+        <div class="mb-2 mx-2 w-1/2 h-full">
+          <h2 class="text-xl text-white pb-2">Result</h2>
+        </div>
+      </div>
+  
+      <div class="flex -mx-2">
+        <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
+          <textarea name="editor" id="section-load-editor"></textarea>
+        </div>
+        <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
+          <textarea name="result" id="section-load-result"></textarea>
+        </div>
+      </div>
+    </section>
+  </template>
 
 
 

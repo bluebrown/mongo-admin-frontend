@@ -1,5 +1,5 @@
-thead th {
-
+.buttons {
+  @apply w-full flex
 }
 table.gridview {
   .elips {@apply hidden}
