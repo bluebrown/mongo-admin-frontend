@@ -84,16 +84,13 @@
 
 
   <template id="indextemplate">
-
-    <section class="flex-1 mx-6">
-
+    <section class="flex-1 mx-6 min-w-0 min-h-0">
       <header class="flex mb-4 items-center">
         <h1 class="text-xl font-semibold">Databases</h1>
         <div class="flex flex-1 justify-end">
           <button id="viewtoggle" class="p-3 border">Toggle View</button>
         </div>
       </header>
-
       <table id="datatable" class="w-full gridview">
         <thead>
           <tr class="bg-gray-100">
@@ -143,98 +140,73 @@
         </tbody>
       </table>
     </section>
-
     <aside class="mx-6 w-64">
-
       <article class="border bg-white rounded-sm p-6">
         <h1 class="font-semibold">Side Stuff</h1>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi maxime hic praesentium voluptas repudiandae
         accusamus quas perspiciatis reprehenderit, corrupti blanditiis labore dolorum. Vitae possimus porro ratione
         distinctio assumenda minima hic.
-
       </article>
-
     </aside>
-
   </template>
-
 
 
   <template id="shelltemplate">
-    <section>
-      <div class="flex w-1/2 pr-2  mb-2">
-        <h1 class="text-xl text-white pb-2">Web Shell</h1>
-      </div>
-
+    <section class="flex-1 mx-6 min-w-0 min-h-0">
+      <header class="flex mb-4 items-center">
+        <h1 class="text-xl font-semibold">Web Shell</h1>
+        <div class="flex flex-1 justify-end">
+        </div>
+      </header>
       <div id="section-shell-terminal"></div>
-
     </section>
+    <aside class="w-64 mx-6"></aside>
   </template>
 
 
-
   <template id="querytemplate">
-
-    <section class="flex-1">
-
-      <header class="flex">
-        <h1 class="">Query API</h1>
-        <div class="mb-3 ml-auto">
+    <section class="flex-1 mx-6 min-w-0 min-h-0">
+      <header class="flex mb-4 items-center">
+        <h1 class="text-xl font-semibold">Query API</h1>
+        <div class="flex flex-1 justify-end">
           <input type="text" name="database" id="section-query-database" value="farm" class=" px-3 py-2">
           <input type="text" name="collection" id="section-query-collection" value="animals" class=" px-3 py-2">
           <input type="text" name="method" id="section-query-method" value="aggregate" class=" px-3 py-2">
           <button id="section-query-run" class="border bg-blue-700 hover:bg-blue-600 px-3 py-2 text-white">Run</button>
         </div>
       </header>
-
-      <div class="flex flex-1 w-full">
-
+      <div class="flex">
         <div class="flex-1">
-          <div class="flex"></div>
           <p class="mb-2">Query</p>
           <textarea name="query" id="section-query-query"></textarea>
+        </div>
+        <div class="flex-1">
           <p class="mb-2">Options</p>
           <textarea name="options" id="section-query-options"></textarea>
         </div>
-        
-        <div class="flex-1">
-          <p class="mb-2">Result</p>
-          <textarea name="result" id="section-query-result"></textarea>
-        </div>
-
       </div>
-
+      <p class="mb-2 mt-3">Result</p>
+      <textarea name="result" id="section-query-result"></textarea>
     </section>
-
-    <aside class="w-64"></aside>
+    <aside class="w-64 mx-6"></aside>
   </template>
-
 
 
   <template id="loadtemplate">
-    <section>
-
-      <div class="flex -mx-2">
-        <div class="mb-2 mx-2 w-1/2 h-full flex pr-4">
-          <h1 class="text-xl text-white pb-2">Script</h1>
-          <button id="query" class="bg-blue-700 hover:bg-blue-600 text-white py-1 px-4 rounded-md ml-auto">Run</button>
+    <section class="flex-1 mx-6 min-w-0 min-h-0">
+      <header class="flex mb-4 items-center">
+        <h1 class="text-xl font-semibold">Load Script</h1>
+        <div class="flex flex-1 justify-end">
+          <button id="query" class="border bg-blue-700 hover:bg-blue-600 px-3 py-2 text-white">Run</button>
         </div>
-        <div class="mb-2 mx-2 w-1/2 h-full">
-          <h2 class="text-xl text-white pb-2">Result</h2>
-        </div>
-      </div>
-
-      <div class="flex -mx-2">
-        <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
-          <textarea name="editor" id="section-load-editor"></textarea>
-        </div>
-        <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
-          <textarea name="result" id="section-load-result" class="h-full"></textarea>
-        </div>
-      </div>
+      </header>
+      <p class="mb-2">Script</p>
+      <textarea name="editor" id="section-load-editor"></textarea>
+      <p class="mb-2 mt-3">Result</p>
+      <textarea name="result" id="section-load-result"></textarea>
     </section>
+    <aside class="w-64 mx-6"></aside>
   </template>
-
 
 
 </body>
