@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-screen" lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -10,13 +10,13 @@
 
 </head>
 
-<body class="h-screen max-w-sreen overflow-x-hidden" aria-label="Mongo Admin">
+<body class="max-w-sreen overflow-hidden h-full" aria-label="Mongo Admin">
 
   <div class="flex h-full">
 
-    <nav class="flex flex-col h-full w-56 border-r bg-gray-800 text-white">
+    <nav aria-label="sidebar" class="flex flex-col w-56 border-r bg-gray-800 text-white">
       <div class="h-20 p-6 text-center">
-       <h1 class="text-xl font-semibold"><%= htmlWebpackPlugin.options.title %></h1>
+        <h1 class="text-xl font-semibold"><%= htmlWebpackPlugin.options.title %></h1>
       </div>
 
       <ul class="flex flex-col items-center justify-center ">
@@ -30,23 +30,25 @@
 
     </nav>
 
-    <section class="h-full  bg-gray-200  flex-1 flex-col">
+    <section class="bg-gray-200 flex-1 flex-col min-h-0 overflow-y-auto overflow-hidden">
 
       <div class="h-20 border-b flex bg-white items-center p-6">
-  
-          <div class="w-16">
-            <span class="border-b mb-3 block"></span>
-            <span class="border-b mb-3 block"></span>
-            <span class="border-b mb-3 block"></span>
-          </div>
 
-          <div class="flex flex-1 bg-gray-200 p-1 mx-3 group">
-            <div class="flex items-center justify-center p-1">
-              <svg class="fill-current w-4 h-4 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path d="M21.172 24l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z" />
+        <div class="w-16">
+          <span class="border-b mb-3 block"></span>
+          <span class="border-b mb-3 block"></span>
+          <span class="border-b mb-3 block"></span>
+        </div>
+
+        <div class="flex flex-1 bg-gray-200 p-1 mx-3 group">
+          <div class="flex items-center justify-center p-1">
+            <svg class="fill-current w-4 h-4 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24">
+              <path
+                d="M21.172 24l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z" />
             </svg>
           </div>
-            <input class="
+          <input class="
               bg-transparent
               border-dotted
               border-2 
@@ -56,16 +58,15 @@
               focus:border-opacity-100 
               flex-1
               p-1
-              " 
-              type="text" placeholder="search here">
-          </div>
+              " type="text" placeholder="search here">
+        </div>
 
 
-          <div class="w-16">
-            <span class="border-b mb-3 block"></span>
-            <span class="border-b mb-3 block"></span>
-            <span class="border-b mb-3 block"></span>
-          </div>
+        <div class="w-16">
+          <span class="border-b mb-3 block"></span>
+          <span class="border-b mb-3 block"></span>
+          <span class="border-b mb-3 block"></span>
+        </div>
 
 
 
@@ -81,7 +82,7 @@
 
   </div>
 
-  
+
   <template id="indextemplate">
 
     <section class="flex-1 mx-6">
@@ -158,49 +159,58 @@
   </template>
 
 
-  
+
   <template id="shelltemplate">
     <section>
       <div class="flex w-1/2 pr-2  mb-2">
         <h1 class="text-xl text-white pb-2">Web Shell</h1>
       </div>
-  
+
       <div id="section-shell-terminal"></div>
-  
+
     </section>
   </template>
 
-  
-  
+
+
   <template id="querytemplate">
-    <section>
 
-      <div class="flex w-1/2 pr-2  mb-2">
-        <h1 class="text-xl text-white pb-2">Query API</h1>
-        <button id="section-query-run" class="bg-blue-700 hover:bg-blue-600 text-white py-1 px-12 ml-auto">Run</button>
+    <section class="flex-1">
+
+      <header class="flex">
+        <h1 class="">Query API</h1>
+        <div class="mb-3 ml-auto">
+          <input type="text" name="database" id="section-query-database" value="farm" class=" px-3 py-2">
+          <input type="text" name="collection" id="section-query-collection" value="animals" class=" px-3 py-2">
+          <input type="text" name="method" id="section-query-method" value="aggregate" class=" px-3 py-2">
+          <button id="section-query-run" class="border bg-blue-700 hover:bg-blue-600 px-3 py-2 text-white">Run</button>
+        </div>
+      </header>
+
+      <div class="flex flex-1 w-full">
+
+        <div class="flex-1">
+          <div class="flex"></div>
+          <p class="mb-2">Query</p>
+          <textarea name="query" id="section-query-query"></textarea>
+          <p class="mb-2">Options</p>
+          <textarea name="options" id="section-query-options"></textarea>
+        </div>
+        
+        <div class="flex-1">
+          <p class="mb-2">Result</p>
+          <textarea name="result" id="section-query-result"></textarea>
+        </div>
+
       </div>
-  
-      <div class="flex mb-2">
-        <input type="text" name="database" id="section-query-database" value="farm" class="flex-1 border bg-teal-900 text-white px-3 py-1">
-        <input type="text" name="collection" id="section-query-collection" value="animals" class="flex-1 border bg-teal-900 text-white px-3 py-1">
-        <input type="text" name="method" id="section-query-method" value="aggregate" class="flex-1 border bg-teal-900 text-white px-3 py-1">
-    </div>
-  
-    <div class="flex -mx-2">
-        <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
-            <textarea name="query" id="section-query-query"></textarea>
-        </div>
-        <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
-            <textarea name="options" id="section-query-options"></textarea>
-        </div>
-    </div>
-    <textarea name="result" id="section-query-result"></textarea>
-  
+
     </section>
+
+    <aside class="w-64"></aside>
   </template>
-  
-  
-  
+
+
+
   <template id="loadtemplate">
     <section>
 
@@ -213,13 +223,13 @@
           <h2 class="text-xl text-white pb-2">Result</h2>
         </div>
       </div>
-  
+
       <div class="flex -mx-2">
         <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
           <textarea name="editor" id="section-load-editor"></textarea>
         </div>
         <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
-          <textarea name="result" id="section-load-result"></textarea>
+          <textarea name="result" id="section-load-result" class="h-full"></textarea>
         </div>
       </div>
     </section>

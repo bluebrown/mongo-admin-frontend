@@ -18,9 +18,9 @@
   background: #555;
 }
 
-.CodeMirror {
+/* .CodeMirror {
   height: 80vh;
-}
+} */
 
 .CodeMirror-foldmarker {    
   font-family: arial;

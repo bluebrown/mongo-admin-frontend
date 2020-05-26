@@ -16,6 +16,7 @@ import 'codemirror/addon/selection/active-line'
 import 'codemirror/theme/dracula.css';
 
 import '../shared/styles/mirror.css'
+import './query.css'
 
 const templ = document.getElementById('querytemplate') as HTMLTemplateElement
 
