@@ -1,0 +1,25 @@
+table.cardview {
+  @apply  flex flex-col;
+
+  tbody {
+    @apply flex flex-wrap -mx-4;
+  
+    tr {
+      @apply flex flex-col mb-4 border mx-4;
+
+      td {
+        @apply flex p-3;
+
+        &:first-child {
+          @apply flex bg-gray-100 border-b;
+        }
+        &:last-child {
+          @apply flex bg-gray-100 font-semibold p-0;
+        }
+      }
+
+    }
+
+  }
+
+}

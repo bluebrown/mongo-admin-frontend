@@ -13,6 +13,7 @@
     "live-server": "^1.2.1",
     "postcss": "^7.0.30",
     "postcss-loader": "^3.0.0",
+    "precss": "^4.0.0",
     "style-loader": "^1.2.1",
     "tailwindcss": "^1.4.6",
     "ts-loader": "^7.0.4",

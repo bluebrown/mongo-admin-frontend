@@ -15,6 +15,8 @@ import 'codemirror/addon/hint/show-hint.css';
 import 'codemirror/addon/selection/active-line'
 import 'codemirror/theme/dracula.css';
 
+import '../shared/styles/mirror.css'
+
 const baseURL = 'http://localhost:7020/api/v0/query'
 
 const db = document

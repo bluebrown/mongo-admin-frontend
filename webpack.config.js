@@ -51,6 +51,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               plugins: [
+                require('precss'),
                 require('tailwindcss'),
                 require('autoprefixer'),
               ],
