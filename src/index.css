@@ -41,3 +41,8 @@ table:not(.gridview) {
   }
   .buttons {@apply hidden}
 }
+
+.active {
+  @apply bg-white text-blue-400 rounded-full;
+}
+  /* .active {background: white; border-radius: 9999px; color: #63b3ed;} */

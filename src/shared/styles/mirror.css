@@ -51,3 +51,13 @@
 .CodeMirror-hint-active {
   color: rgb(180, 180, 238);
 }
+
+/* .CodeMirror__wrapper {
+  resize: both;
+  overflow: auto !important;
+} */
+
+.CodeMirror {
+  resize: vertical;
+  overflow: hidden !important;
+}
