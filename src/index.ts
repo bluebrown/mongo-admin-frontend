@@ -41,6 +41,14 @@ fetchLoad(`printjson({
     clone.querySelector('.name').textContent = db.name;
     clone.querySelector('.size').textContent = db.sizeOnDisk + ' bytes';
     clone.querySelector('.collections').textContent = db.collections.length + ' collections';
+    // TODO: load async
+    const ul = clone.querySelector('ul');
+    db.collections.forEach((col: string) => {
+      ul.append(Object.assign(document.createElement('li'), {
+        className: 'py-1 px-3 cursor-pointer hover:bg-blue-100 hover:text-blue-800',
+        textContent: col,
+      }));
+    });
     dataBody.append(clone);
   }
 }).catch(console.warn);

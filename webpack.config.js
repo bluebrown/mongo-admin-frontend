@@ -73,7 +73,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
+          {loader: 'css-loader', options: {importLoaders: 1}},
           {
             loader: 'postcss-loader',
             options: {
@@ -85,7 +85,7 @@ module.exports = {
               ],
             },
           },
-        ]
+        ],
       },
       {
         test: /\.tsx?$/,
@@ -100,6 +100,6 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     compress: true,
-    port: 5000
-  }
+    port: 5000,
+  },
 };

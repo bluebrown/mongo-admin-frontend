@@ -31,9 +31,13 @@
 
 <template id="rowtemplate">
   <tr class="">
-    <td class="name font-semibold"></td>
+    <td class="name font-semibold cursor-pointer hover:text-blue-800"></td>
     <td class="size"></td>
-    <td class="collections"></td>
+    <td class="relative group cursor-pointer">
+      <span class="collections"></span>
+      <ul class="hidden group-hover:block absolute top-0 transform translate-y-10 
+        z-10 w-40 bg-gray-100 rounded-sm shadow-md"></ul>
+    </td>
     <td>
       <div class="buttons">
         <button class="flex-1 text-center p-3">action</button>
