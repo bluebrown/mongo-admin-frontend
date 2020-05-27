@@ -17,7 +17,7 @@ export const baseConf = {
     name: 'javascript',
     json: true,
   },
-} as CodeMirror.EditorConfiguration
+} as CodeMirror.EditorConfiguration;
 
 
 export const initText = `// edit this script and/or hit run

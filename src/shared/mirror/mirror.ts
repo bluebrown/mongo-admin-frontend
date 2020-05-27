@@ -1,17 +1,17 @@
-import {baseConf, initText} from './cmrc'
-import {codeCompletion} from './mongohints/hints'
-import 
-  {
-    baseHints,
-    collectionHints,
-    commandHints,
-    cursorHints,
-    databaseHints,
-    keywordHints,
-    logicHints,
-    valueHints,
-  }
-from './mongohints/language'
+import {baseConf, initText} from './cmrc';
+import {codeCompletion} from './mongohints/hints';
+import
+{
+  baseHints,
+  collectionHints,
+  commandHints,
+  cursorHints,
+  databaseHints,
+  keywordHints,
+  logicHints,
+  valueHints,
+}
+  from './mongohints/language';
 
 
 export {
@@ -26,4 +26,4 @@ export {
   keywordHints,
   logicHints,
   valueHints,
-}
+};
