@@ -13,7 +13,7 @@ import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/hint/show-hint';
 import 'codemirror/addon/selection/active-line'
 
-import '../shared/tailwind.css'
+import '../shared/styles/tailwind.css'
 import '../shared/styles/mirror.css'
 import './load.css'
 

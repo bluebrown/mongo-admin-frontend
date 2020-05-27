@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 
 module.exports = {
   entry: {
@@ -12,35 +13,39 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'public'),
   },
-  devtool: 'inline-source-map',
+  devtool: false,
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Dashboard',
-      template:'./src/index.html',
+      template: './src/index.html',
       filename: 'index.html',
       chunks: ['index'],
     }),
     new HtmlWebpackPlugin({
       title: 'Load Script',
-      template:'./src/index.html',
-      // template: './src/load/load.html',
+      template: './src/index.html',
       filename: 'load.html',
       chunks: ['load'],
     }),
     new HtmlWebpackPlugin({
       title: 'Web Shell',
-      template:'./src/index.html',
-      // template: './src/shell/shell.html',
+      template: './src/index.html',
       filename: 'shell.html',
       chunks: ['shell'],
     }),
     new HtmlWebpackPlugin({
       title: 'Query API',
-      template:'./src/index.html',
-      // template: './src/query/query.html',
+      template: './src/index.html',
       filename: 'query.html',
       chunks: ['query'],
     }),
+    // new HtmlWebpackPartialsPlugin([
+    //   {
+    //     path: path.join(__dirname, './src/index.html'),
+    //     priority: 'high',
+    //     location: 'head'
+    //   }
+    // ]),
   ],
   module: {
     rules: [
@@ -70,7 +75,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   devServer: {
     contentBase: path.join(__dirname, 'public'),

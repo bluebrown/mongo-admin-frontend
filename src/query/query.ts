@@ -1,4 +1,4 @@
-import '../shared/tailwind.css'
+import '../shared/styles/tailwind.css'
 import { baseConf } from '../shared/mirror';
 
 const parse = require('mongodb-query-parser')

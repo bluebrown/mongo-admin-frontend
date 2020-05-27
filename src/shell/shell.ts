@@ -1,4 +1,4 @@
-import '../shared/tailwind.css'
+import '../shared/styles/tailwind.css'
 import 'xterm/css/xterm.css'
 import{Terminal} from 'xterm'
 
