@@ -10,42 +10,57 @@ module.exports = {
     query: './src/query',
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'public'),
   },
   devtool: false,
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Dashboard',
-      template: './src/index.html',
+      template: './src/shared/baseof.html',
       filename: 'index.html',
       chunks: ['index'],
     }),
     new HtmlWebpackPlugin({
-      title: 'Load Script',
-      template: './src/index.html',
+      title: 'Script Runner',
+      template: './src/shared/baseof.html',
       filename: 'load.html',
       chunks: ['load'],
     }),
     new HtmlWebpackPlugin({
       title: 'Web Shell',
-      template: './src/index.html',
+      template: './src/shared/baseof.html',
       filename: 'shell.html',
       chunks: ['shell'],
     }),
     new HtmlWebpackPlugin({
       title: 'Query API',
-      template: './src/index.html',
+      template: './src/shared/baseof.html',
       filename: 'query.html',
       chunks: ['query'],
     }),
-    // new HtmlWebpackPartialsPlugin([
-    //   {
-    //     path: path.join(__dirname, './src/index.html'),
-    //     priority: 'high',
-    //     location: 'head'
-    //   }
-    // ]),
+    new HtmlWebpackPartialsPlugin([
+      {
+        path: path.join('./src/index.html'),
+        template_filename: 'index.html',
+        location: 'main'
+      },
+      {
+        path: path.join('./src/load/load.html'),
+        template_filename: 'load.html',
+        location: 'main'
+      },
+      {
+        path: path.join('./src/shell/shell.html'),
+        template_filename: 'shell.html',
+        location: 'main'
+      },
+      {
+        path: path.join('./src/query/query.html'),
+        template_filename: 'query.html',
+        location: 'main'
+      },
+    ]),
   ],
   module: {
     rules: [

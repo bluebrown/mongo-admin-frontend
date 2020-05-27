@@ -1,39 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-  <title>Mongo Admin</title>
-
-</head>
-
-<body class="bg-gray-900 p-8" aria-label="Mongo Admin">
-
-  <section>
-
-    <div class="flex -mx-2">
-      <div class="mb-2 mx-2 w-1/2 h-full flex pr-4">
-        <h1 class="text-xl text-white pb-2">Script</h1>
-        <button id="query" class="bg-blue-700 hover:bg-blue-600 text-white py-1 px-4 rounded-md ml-auto">Run</button>
-      </div>
-      <div class="mb-2 mx-2 w-1/2 h-full">
-        <h2 class="text-xl text-white pb-2">Result</h2>
-      </div>
+<section class="flex-1 mx-6 min-w-0 min-h-0">
+  <header class="flex mb-4 items-center">
+    <h1 class="text-xl font-semibold">Load Script</h1>
+    <div class="flex flex-1 justify-end">
+      <button id="query" class="border bg-blue-700 hover:bg-blue-600 px-3 py-2 text-white">Run</button>
     </div>
-
-    <div class="flex -mx-2">
-      <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
-        <textarea name="editor" id="section-load-editor"></textarea>
-      </div>
-      <div class="mb-2 rounded-sm shadow-md mx-2 w-1/2 h-full">
-        <textarea name="result" id="section-load-result"></textarea>
-      </div>
-    </div>
-  </section>
-
-</body>
-
-</html>
+  </header>
+  <p class="mb-2">Script</p>
+  <textarea name="editor" id="section-load-editor"></textarea>
+  <p class="mb-2 mt-3">Result</p>
+  <textarea name="result" id="section-load-result"></textarea>
+</section>
+<aside class="w-64 mx-6"></aside>

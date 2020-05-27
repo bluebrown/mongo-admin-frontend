@@ -18,10 +18,6 @@ import 'codemirror/theme/dracula.css';
 import '../shared/styles/mirror.css'
 import './query.css'
 
-const templ = document.getElementById('querytemplate') as HTMLTemplateElement
-
-document.querySelector('main').append(templ.content.cloneNode(true))
-
 const baseURL = 'http://localhost:7020/api/v0/query'
 
 const db = document
