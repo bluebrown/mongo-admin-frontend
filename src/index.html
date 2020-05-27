@@ -23,43 +23,23 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
-      <tr class="">
-        <td class="font-semibold">RandomDatabaseName</td>
-        <td>1394mb</td>
-        <td>13 Collection</td>
-        <td>
-          <div class="buttons">
-            <button class="flex-1 text-center p-3">action</button>
-            <button class="flex-1 text-center p-3">action</button>
-          </div>
-          <div class="elips"><button>...</button></div>
-        </td>
-      </tr>
-      <tr class="">
-        <td class="font-semibold">RandomDatabaseName</td>
-        <td>1394mb</td>
-        <td>13 Collection</td>
-        <td>
-          <div class="buttons">
-            <button class="flex-1 text-center p-3">action</button>
-            <button class="flex-1 text-center p-3">action</button>
-          </div>
-          <div class="elips"><button>...</button></div>
-        </td>
-      </tr>
-      <tr class="">
-        <td class="font-semibold">RandomDatabaseName</td>
-        <td>1394mb</td>
-        <td>13 Collection</td>
-        <td>
-          <div class="buttons">
-            <button class="flex-1 text-center p-3">action</button>
-            <button class="flex-1 text-center p-3">action</button>
-          </div>
-          <div class="elips"><button>...</button></div>
-        </td>
-      </tr>
+    <tbody id="databody">
+
     </tbody>
   </table>
 </section>
+
+<template id="rowtemplate">
+  <tr class="">
+    <td class="name font-semibold"></td>
+    <td class="size"></td>
+    <td class="collections"></td>
+    <td>
+      <div class="buttons">
+        <button class="flex-1 text-center p-3">action</button>
+        <button class="flex-1 text-center p-3">action</button>
+      </div>
+      <div class="elips"><button>...</button></div>
+    </td>
+  </tr>
+</template>

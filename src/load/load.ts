@@ -1,5 +1,6 @@
 import {baseConf, initText, codeCompletion} from '../shared/mirror';
 import CodeMirror from 'codemirror';
+import {fetchLoad} from '../shared/ts/fetch';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/hint/show-hint.css';
@@ -32,23 +33,13 @@ const editor = CodeMirror.fromTextArea(textArea, {
 editor.getDoc().setValue(initText);
 
 const queryButton = document.getElementById('query');
-queryButton.onclick = async () => {
-  try {
-    const res = await fetch('http://localhost:7020/api/v0/load', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: Buffer.from(editor.getDoc().getValue()),
-    });
-
-    const results = await res.json();
-
-    result.getDoc().setValue(
-        results.error || results.result?.raw ||
-      JSON.stringify(results.result, null, 4).replace(/":/g, '" :'),
-    );
-  } catch (err) {
-    console.warn(err);
-  }
+queryButton.onclick = () => {
+  fetchLoad(editor.getDoc().getValue())
+      .then((results) => {
+        result.getDoc().setValue(results.error || results.result?.raw ||
+          JSON.stringify(results.result, null, 4).replace(/":/g, '" :'));
+      })
+      .catch(console.warn);
 };
 
 queryButton.click();
