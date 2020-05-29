@@ -8,6 +8,8 @@ const parse = require('mongodb-query-parser') as any;
 const gb = document.getElementById('gridbutton');
 const lb = document.getElementById('listbutton');
 const t = document.getElementById('datatable');
+const crudT = document.getElementById('crudtemplate') as HTMLTemplateElement;
+const caption = document.getElementById('caption');
 
 lb.onclick = () => {
   lb.classList.add('active');
@@ -28,6 +30,9 @@ const dataBody = document.getElementById('databody');
 // three level view
 // databaselist / single databases collectionlist / single collections document crud
 
+const collectionCrud = (name: string) => {
+  t.parentElement.replaceChild(crudT.content.cloneNode(true), t)
+}
 
 // ist all databases
 const allStats = () => {
@@ -38,26 +43,37 @@ const allStats = () => {
     ...rest,
     collections: db.getSiblingDB(name).getCollectionNames()
   }))
-})`).then(({ result: { raw } }) => {
-    const data = parse(raw);
-    const { databases } = data;
-    for (const db of databases) {
-      console.log(db);
-      const clone = content.cloneNode(true) as HTMLElement;
-      clone.querySelector('.name').textContent = db.name;
-      clone.querySelector('.size').textContent = db.sizeOnDisk + ' bytes';
-      clone.querySelector('.collections').textContent = db.collections.length + ' collections';
-      // TODO: load async
-      const ul = clone.querySelector('ul');
-      db.collections.forEach((col: string) => {
-        ul.append(Object.assign(document.createElement('li'), {
-          className: 'py-1 px-3 cursor-pointer hover:bg-blue-100 hover:text-blue-800',
-          textContent: col,
-        }));
-      });
-      dataBody.append(clone);
-    }
-  }).catch(console.warn);
+})`)
+    .then(({ result: { raw } }) => {
+      const data = parse(raw);
+      const { databases } = data;
+      for (const db of databases) {
+        console.log(db);
+        const clone = content.cloneNode(true) as HTMLElement;
+        clone.querySelector('.name').textContent = db.name;
+        clone.querySelector('.size').textContent = db.sizeOnDisk + ' bytes';
+        clone.querySelector('.collections').textContent = db.collections.length + ' collections';
+        // TODO: load async
+        const ul = clone.querySelector('ul');
+        db.collections.forEach((col: string) => {
+          ul.append(Object.assign(document.createElement('li'), {
+            className: 'py-1 px-3 cursor-pointer hover:bg-blue-100 hover:text-blue-800',
+            textContent: col,
+          }));
+        });
+        dataBody.append(clone);
+        
+        dataBody.onclick = ((event) => {
+          if (!event.target) return
+          let target = event.target as HTMLElement
+          if (target.classList.contains('name')) {
+            dataBody.innerHTML = '';
+            dbStats(target.textContent);
+          }
+        })
+      
+      }
+    }).catch(console.warn);
 }
 
 // list all collection of given db
@@ -82,24 +98,31 @@ const dbStats = (dbname: string) => {
     for (const c of collections) {
       console.log(c);
       const clone = content.cloneNode(true) as HTMLElement;
-      clone.querySelector('.name').textContent = c.name;
+      Object.assign(clone.querySelector('.name')).textContent = c.name;
+      Object.assign(clone.querySelector('.name')).classList.add = 'db';
       clone.querySelector('.size').textContent = c.size + ' bytes';
       clone.querySelector('.collections').textContent = c.documents + ' documents';
       dataBody.append(clone);
+    
+      dataBody.onclick = ((event) => {
+        if (!event.target) return
+        let target = event.target as HTMLElement
+        if (target.classList.contains('name')) {
+          dataBody.innerHTML = '';
+          collectionCrud(target.textContent);
+        }
+      })
+    
     }
   }).catch(console.warn);
-
 }
 
-dataBody.onclick = ((event) => {
-  if (!event.target) return
-  let target = event.target as HTMLElement
-  if (target.classList.contains('name')) {
-    dataBody.innerHTML = '';
-    dbStats(target.textContent);
-  }
-})
-
+caption.onclick = () => {
+  console.log(t.parentElement)
+  const ca = document.getElementById('crudarea')
+  if (ca) ca.parentElement.replaceChild(t, ca)
+  allStats()
+}
 
 
 allStats()

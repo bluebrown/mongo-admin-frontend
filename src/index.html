@@ -1,6 +1,9 @@
 <section class="flex-1 mx-6 min-w-0 min-h-0">
   <header class="flex mb-4 items-center">
-    <h1 class="text-xl font-semibold">Databases</h1>
+    <div class="flex">
+      <h1 id="caption" class="text-xl font-semibold cursor-pointer">Databases</h1>
+
+    </div>
     <div class="flex flex-1 justify-end">
       <div class="bg-gray-300 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
         <button id="gridbutton" class="active inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2 active" id="grid">
@@ -29,6 +32,7 @@
   </table>
 </section>
 
+
 <template id="rowtemplate">
   <tr class="">
     <td class="name font-semibold cursor-pointer hover:text-blue-800"></td>
@@ -46,4 +50,11 @@
       <div class="elips"><button>...</button></div>
     </td>
   </tr>
+</template>
+
+
+<template id="crudtemplate">
+  <div id="crudarea">
+    <textarea id="crud">this is crud</textarea>
+  </div>
 </template>
