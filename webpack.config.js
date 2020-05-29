@@ -2,9 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-module.exports = {
+
+module.exports = (env, options) => ({
   entry: {
     index: './src/',
     load: './src/load',
@@ -79,10 +82,10 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: process.env.NODE_ENV === 'development',
+              hmr: options.mode === 'development',
             },
           },
-          {loader: 'css-loader', options: {importLoaders: 1}},
+          { loader: 'css-loader', options: { importLoaders: 1 } },
           {
             loader: 'postcss-loader',
             options: {
@@ -112,7 +115,11 @@ module.exports = {
     port: 5000,
   },
   optimization: {
-    // minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    minimize: options.mode === 'production',
+    minimizer: [
+      new TerserPlugin(),
+      new OptimizeCSSAssetsPlugin(),
+    ],
     // Once your build outputs multiple chunks, this option will ensure they share the webpack runtime
     // instead of having their own. This also helps with long-term caching, since the chunks will only
     // change when actual code changes, not the webpack runtime.
@@ -134,4 +141,4 @@ module.exports = {
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
   },
-};
+}) 
