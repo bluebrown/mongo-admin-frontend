@@ -27,6 +27,37 @@ const rowTempl = document.getElementById('rowtemplate') as HTMLTemplateElement;
 const content = rowTempl.content;
 const dataBody = document.getElementById('databody');
 
+
+const queries = {
+  databases() {
+    return `printjson({
+      versions: db.getSiblingDB('admin').system.version.find({_id: 'featureCompatibilityVersion'}).toArray(),
+      databases: db.adminCommand({ listDatabases: 1 }).databases.map(({ name, ...rest }) => ({
+        name,
+        ...rest,
+        collections: db.getSiblingDB(name).getCollectionNames()
+      }))
+    })`
+  },
+  collections(dbname: string){
+    return `db = db.getSiblingDB('${dbname}')
+    let colls = db.getCollectionNames()
+    printjson(colls.map((cname) => {
+      let c = db[cname]
+      return {
+        name: cname,
+        size: c.storageSize(),
+        documents: c.countDocuments({}),
+        keys: c.aggregate([
+          { "$project": { "arrayofkeyvalue": { "$objectToArray":"$$ROOT" }}},
+          { "$unwind": "$arrayofkeyvalue" },
+          { "$group": { "_id": null, "allkeys": { "$addToSet": "$arrayofkeyvalue.k" }}}
+        ]).toArray()[0].allkeys,
+      }
+    }))`
+  }
+}
+
 // three level view
 // databaselist / single databases collectionlist / single collections document crud
 
@@ -36,17 +67,11 @@ const collectionCrud = (name: string) => {
 
 // ist all databases
 const allStats = () => {
-  fetchLoad(`printjson({
-  versions: db.getSiblingDB('admin').system.version.find({_id: 'featureCompatibilityVersion'}).toArray(),
-  databases: db.adminCommand({ listDatabases: 1 }).databases.map(({ name, ...rest }) => ({
-    name,
-    ...rest,
-    collections: db.getSiblingDB(name).getCollectionNames()
-  }))
-})`)
+  fetchLoad(queries.databases())
     .then(({ result: { raw } }) => {
       const data = parse(raw);
       const { databases } = data;
+      document.getElementById('databody').innerHTML = ''
       for (const db of databases) {
         console.log(db);
         const clone = content.cloneNode(true) as HTMLElement;
@@ -67,7 +92,6 @@ const allStats = () => {
           if (!event.target) return
           let target = event.target as HTMLElement
           if (target.classList.contains('name')) {
-            dataBody.innerHTML = '';
             dbStats(target.textContent);
           }
         })
@@ -79,22 +103,9 @@ const allStats = () => {
 // list all collection of given db
 const dbStats = (dbname: string) => {
 
-  fetchLoad(`db = db.getSiblingDB('${dbname}')
-  let colls = db.getCollectionNames()
-  printjson(colls.map((cname) => {
-    let c = db[cname]
-    return {
-      name: cname,
-      size: c.storageSize(),
-      documents: c.countDocuments({}),
-      keys: c.aggregate([
-        { "$project": { "arrayofkeyvalue": { "$objectToArray":"$$ROOT" }}},
-        { "$unwind": "$arrayofkeyvalue" },
-        { "$group": { "_id": null, "allkeys": { "$addToSet": "$arrayofkeyvalue.k" }}}
-      ]).toArray()[0].allkeys,
-    }
-  }))`).then(({ result: { raw } }) => {
+  fetchLoad(queries.collections(dbname)).then(({ result: { raw } }) => {
     const collections = parse(raw);
+    document.getElementById('databody').innerHTML = ''
     for (const c of collections) {
       console.log(c);
       const clone = content.cloneNode(true) as HTMLElement;
@@ -108,8 +119,8 @@ const dbStats = (dbname: string) => {
         if (!event.target) return
         let target = event.target as HTMLElement
         if (target.classList.contains('name')) {
-          dataBody.innerHTML = '';
           collectionCrud(target.textContent);
+          dataBody.innerHTML = ''
         }
       })
     

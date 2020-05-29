@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -15,6 +17,8 @@ module.exports = {
   },
   devtool: false,
   plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       title: 'Dashboard',
       template: './src/shared/html/baseof.html',
@@ -72,7 +76,12 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development',
+            },
+          },
           {loader: 'css-loader', options: {importLoaders: 1}},
           {
             loader: 'postcss-loader',
