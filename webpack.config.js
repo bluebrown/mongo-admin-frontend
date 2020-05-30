@@ -124,19 +124,8 @@ module.exports = (env, options) => ({
       new OptimizeCSSAssetsPlugin(),
     ],
     runtimeChunk: 'single',
-    // splitChunks: {
-    //   cacheGroups: {
-    //     vendor: {
-    //       test: /[\\/]node_modules[\\/](alpinejs|codemirror|vue)[\\/]/,
-    //       name: 'vendors',
-    //       chunks: 'all',
-    //     },
-    //   },
-    // },
   },
   performance: {
     hints: false,
-    // maxEntrypointSize: 512000,
-    // maxAssetSize: 512000,
   },
 });

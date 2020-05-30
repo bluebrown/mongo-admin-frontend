@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import CodeMirror from 'codemirror';
 import {baseConf} from './shared/mirror';
 import 'codemirror/lib/codemirror.css';
@@ -13,17 +14,13 @@ import 'codemirror/theme/dracula.css';
 
 import './shared/styles/tailwind.css';
 import './index.css';
+
+import {fetchLoad} from './shared/ts/fetch';
 import queries from './shared/ts/dataqueries';
 import {connector} from './shared/ts/apiconnection';
 
-const {post} = connector();
-
-import Vue from 'vue';
-
-// import 'alpinejs';
-
-import {fetchLoad} from './shared/ts/fetch';
 const parse = require('mongodb-query-parser') as any;
+const {post} = connector();
 
 // eslint-disable-next-line no-unused-vars
 const app = new Vue({
@@ -36,6 +33,7 @@ const app = new Vue({
     currentDb: null,
     currentCollection: null,
     collectionData: [],
+    editor: null,
   },
   mounted() {
     this.baseView();
@@ -71,11 +69,11 @@ const app = new Vue({
         this.currentCollection = collectionName;
         this.collectionData = json.result;
         setTimeout(() => {
-          const editor = CodeMirror.fromTextArea(
+          this.editor = CodeMirror.fromTextArea(
             document.getElementById('documents') as HTMLTextAreaElement,
             {...baseConf, readOnly: true},
           );
-          editor.setValue(JSON.stringify(this.collectionData, null, 2));
+          this.editor.setValue(JSON.stringify(this.collectionData, null, 2));
         }, 0);
       }).catch(console.log);
     },
@@ -88,57 +86,3 @@ const app = new Vue({
     },
   },
 });
-
-// interface AlpineApp {
-//   gridview: boolean,
-//   breadcrumbs: string[]
-//   headers: string[]
-//   items: object[],
-//   versions: object[],
-//   currentDb?: string,
-//   currentCollection?: string,
-// };
-
-
-// (window as any).state = function() {
-//   return {
-//     gridview: true,
-//     breadcrumbs: [],
-//     headers: ['Name', 'Size', 'Collections'],
-//     items: [],
-//     versions: [],
-//     currentDb: null,
-//     currentCollection: null,
-//     init() {
-//       this.baseView();
-//     },
-//     baseView() {
-//       this.breadcrumbs = [];
-//       this.headers[2] = 'Collections';
-//       this.currentDb = null;
-//       this.currentCollection = null;
-//       fetchLoad(queries.databases())
-//           .then(({result: {raw}}) => {
-//             this.items = parse(raw);
-//           }).catch(console.log);
-//     },
-//     databaseView(dbname: string) {
-//       fetchLoad(queries.collections(dbname))
-//           .then(({result: {raw}}) => {
-//             this.items = parse(raw);
-//             this.headers[2] = 'Documents';
-//           }).catch(console.log);
-//     },
-//     itemClick(item: any) {
-//       if (this.currentDb) {
-//         this.breadcrumbs.push(`Documents (${item.name})`);
-//         this.currentCollection = item.name;
-//         // render crud view
-//         return;
-//       }
-//       this.breadcrumbs.push(`Collections (${item.name})`);
-//       this.currentDb = item.name;
-//       this.databaseView(this.currentDb);
-//     },
-//   } as AlpineApp;
-// };

@@ -1,0 +1,3 @@
+.terminal.xterm {
+  @apply p-3 shadow-md rounded-md
+}

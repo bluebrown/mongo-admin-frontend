@@ -2,6 +2,7 @@ import '../shared/styles/tailwind.css';
 import 'xterm/css/xterm.css';
 import {Terminal} from 'xterm';
 import {FitAddon} from 'xterm-addon-fit';
+import './shell.css';
 
 const client = require('socket.io-client');
 const socket = client.connect('http://localhost:7020');
@@ -12,6 +13,7 @@ const term = new Terminal();
 const fitAddon = new FitAddon();
 term.loadAddon(fitAddon);
 term.open(document.getElementById('section-shell-terminal'));
+fitAddon.fit();
 
 
 socket.on('connect', () => {
