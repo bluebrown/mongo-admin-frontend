@@ -1,20 +1,16 @@
-<section id="app" class="flex-1 mx-6 min-w-0 min-h-0">
+<section x-data="app()" x-init="mounted()" class="flex-1 mx-6 min-w-0 min-h-0">
   <header class="flex mb-4 items-center">
     <div class="flex">
       <div class="flex group">
-        <p @click="baseView()"
-         class="text-xl font-semibold cursor-pointer"> root </p>
-        <span class="mx-2 text-xl font-semibold group-last:hidden"> / </span>
+        <p @click="baseView()" class="text-xl font-semibold cursor-pointer">root</p>
       </div>
-      <div v-if="currentDb" class="flex group">
-        <p  @click="databaseView(currentDb)"
-        class="text-xl font-semibold cursor-pointer">{{currentDb}}</p>
+      <div x-show="currentDb" class="flex group">
         <span class="mx-2 text-xl font-semibold group-last:hidden"> / </span>
+        <p @click="databaseView(currentDb)" class="text-xl font-semibold cursor-pointer" x-text="currentDb"></p>
       </div>
-      <div v-if="currentCollection" class="flex group">
-        <p
-        class="text-xl font-semibold cursor-pointer">{{currentCollection}}</p>
-        <span class="mx-2 text-xl font-semibold group-last:hidden"> / </span>
+      <div x-show="currentCollection" class="flex group">
+        <span class="mx-2 text-xl font-semibold"> / </span>
+        <p class="text-xl font-semibold cursor-pointer" x-text="currentCollection"></p>
       </div>
     </div>
     <div class="flex flex-1 justify-end">
@@ -76,38 +72,51 @@
     </div>
   </header>
 
-  <table v-if="!currentCollection" id="datatable" class="w-full" :class="{ gridview: gridview }">
+  <table x-show="!currentCollection" id="datatable" class="w-full" :class="{ gridview: gridview }">
     <thead>
       <tr class="bg-gray-100">
-        <th v-for="head in headers">{{head}}</th>
+        <template x-for="head in headers">
+          <th x-text="head"></th>
+        </template>
         <th></th>
       </tr>
     </thead>
+    
     <tbody id="databody">
-      <tr v-for="item in items">
-        <td @click="itemClick(item)"
-        class="name font-semibold cursor-pointer hover:text-blue-800">{{item.name}}</td>
-        <td class="size">{{item.size}} bytes</td>
-        <td class="relative group cursor-pointer">
-          <span v-if="item.collections" class="collections">{{item.collections.length}} collections</span>
-          <span v-if="item.documents" class="collections">{{item.documents}} documents</span>
-          <ul
-            class="hidden group-hover:block absolute top-0 transform translate-y-10 z-10 w-40 bg-gray-100 rounded-sm shadow-md"
-          ></ul>
-        </td>
-        <td>
-          <div class="buttons">
-            <button class="flex-1 text-center p-3">action</button>
-            <button class="flex-1 text-center p-3">action</button>
-          </div>
-          <div class="elips"><button>...</button></div>
-        </td>
-      </tr>
+      <template x-for="item in items">
+        <tr>
+
+          <td @click="itemClick(item)" x-text="item.name"
+            class="name font-semibold cursor-pointer hover:text-blue-800">
+          </td>
+          
+          <td class="size"><span x-text="item.size+' bytes'"></span></td>
+          
+          <td class="relative group cursor-pointer">
+            <span x-show="item.collections" class="collections" x-text="
+            item.collections ? item.collections.length+' collections' : ''"></span>
+            <span x-show="item.documents" class="collections" x-text="item.documents ? item.documents+' documents' : ''"></span>
+            <ul
+              class="hidden group-hover:block absolute top-0 transform translate-y-10 z-10 w-40 bg-gray-100 rounded-sm shadow-md"
+            ></ul>
+          
+          </td>
+          
+          <td>
+            <div class="buttons">
+              <button class="flex-1 text-center p-3">action</button>
+              <button class="flex-1 text-center p-3">action</button>
+            </div>
+            <div class="elips"><button>...</button></div>
+          </td>
+
+        </tr>
+      </template>
     </tbody>
+
   </table>
-  <div v-else>
-    <textarea name="documents" id="documents">
-    </textarea>
+  <div x-show="currentCollection">
+    <textarea name="documents" id="documents"> </textarea>
   </div>
 </section>
 

@@ -108,9 +108,6 @@ module.exports = (env, options) => ({
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-    },
   },
   devServer: {
     contentBase: path.join(__dirname, 'public'),

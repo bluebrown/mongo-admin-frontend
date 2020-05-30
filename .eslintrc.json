@@ -20,6 +20,8 @@
     ],
     "rules": {
         "max-len": ["warn", 120],
-        "require-jsdoc": "off"
+        "require-jsdoc": "off",
+        "indent": ["warn", 2],
+        "key-spacing": "warn"
     }
 }

@@ -22,7 +22,6 @@
     "postcss": "^7.0.30",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
-    "style-loader": "^1.2.1",
     "tailwindcss": "^1.4.6",
     "terser-webpack-plugin": "^3.0.2",
     "ts-loader": "^7.0.4",
@@ -38,7 +37,6 @@
     "mongodb-query-parser": "^2.1.1",
     "socket.io": "^2.3.0",
     "socket.io-stream": "^0.9.1",
-    "vue": "^2.6.11",
     "xterm": "^4.6.0",
     "xterm-addon-fit": "^0.4.0"
   },
