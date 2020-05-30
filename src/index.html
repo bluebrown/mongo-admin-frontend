@@ -1,46 +1,123 @@
-<section class="flex-1 mx-6 min-w-0 min-h-0">
+<section id="app" class="flex-1 mx-6 min-w-0 min-h-0">
   <header class="flex mb-4 items-center">
     <div class="flex">
-      <h1 id="caption" class="text-xl font-semibold cursor-pointer">Databases</h1>
-
+      <div class="flex group">
+        <p @click="baseView()"
+         class="text-xl font-semibold cursor-pointer">Databases</p>
+        <span class="mx-2 text-xl font-semibold group-last:hidden"> / </span>
+      </div>
+      <div class="flex group" v-for="crumb in breadcrumbs">
+        <p @click="databaseView(currentDb)"
+        class="text-xl font-semibold cursor-pointer">{{crumb}}</p>
+        <span class="mx-2 text-xl font-semibold group-last:hidden"> / </span>
+      </div>
     </div>
     <div class="flex flex-1 justify-end">
       <div class="bg-gray-300 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
-        <button id="gridbutton" class="active inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2 active" id="grid">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fill-current w-4 h-4 mr-2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <button
+          id="gridbutton"
+          @click="gridview = true"
+          :class="{ active: gridview }"
+          class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="fill-current w-4 h-4 mr-2"
+          >
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
           <span>Grid</span>
         </button>
-        <button id="listbutton" class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-r-full px-4 py-2" id="list">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fill-current w-4 h-4 mr-2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+
+        <button
+          id="listbutton"
+          @click="gridview = false"
+          :class="{ active: !gridview }"
+          class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-r-full px-4 py-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="fill-current w-4 h-4 mr-2"
+          >
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
           <span>List</span>
         </button>
       </div>
     </div>
   </header>
-  <table id="datatable" class="w-full gridview">
+
+  <table id="datatable" class="w-full" :class="{ gridview: gridview }">
     <thead>
       <tr class="bg-gray-100">
-        <th>Name</th>
-        <th>Size</th>
-        <th>Collections</th>
+        <th v-for="head in headers">{{head}}</th>
         <th></th>
       </tr>
     </thead>
     <tbody id="databody">
-
+      <tr v-for="item in items">
+        <td @click="itemClick(item)"
+        class="name font-semibold cursor-pointer hover:text-blue-800">{{item.name}}</td>
+        <td class="size">{{item.size}} bytes</td>
+        <td class="relative group cursor-pointer">
+          <span v-if="item.collections" class="collections">{{item.collections.length}} collections</span>
+          <span v-if="item.documents" class="collections">{{item.documents}} documents</span>
+          <ul
+            class="hidden group-hover:block absolute top-0 transform translate-y-10 z-10 w-40 bg-gray-100 rounded-sm shadow-md"
+          ></ul>
+        </td>
+        <td>
+          <div class="buttons">
+            <button class="flex-1 text-center p-3">action</button>
+            <button class="flex-1 text-center p-3">action</button>
+          </div>
+          <div class="elips"><button>...</button></div>
+        </td>
+      </tr>
     </tbody>
   </table>
+
 </section>
 
+<!-- <template id="crudtemplate">
+  <div id="crudarea">
+    <textarea id="crud">this is crud</textarea>
+  </div>
+</template>
 
-<template id="rowtemplate">
+<template x-for="item in items" :key="item" id="rowtemplate">
   <tr class="">
     <td class="name font-semibold cursor-pointer hover:text-blue-800"></td>
     <td class="size"></td>
     <td class="relative group cursor-pointer">
       <span class="collections"></span>
-      <ul class="hidden group-hover:block absolute top-0 transform translate-y-10 
-        z-10 w-40 bg-gray-100 rounded-sm shadow-md"></ul>
+      <ul
+        class="hidden group-hover:block absolute top-0 transform translate-y-10 z-10 w-40 bg-gray-100 rounded-sm shadow-md"
+      ></ul>
     </td>
     <td>
       <div class="buttons">
@@ -50,11 +127,4 @@
       <div class="elips"><button>...</button></div>
     </td>
   </tr>
-</template>
-
-
-<template id="crudtemplate">
-  <div id="crudarea">
-    <textarea id="crud">this is crud</textarea>
-  </div>
-</template>
+</template> -->
