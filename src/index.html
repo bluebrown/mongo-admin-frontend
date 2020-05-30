@@ -71,7 +71,7 @@
     </div>
   </header>
 
-  <table id="datatable" class="w-full" :class="{ gridview: gridview }">
+  <table v-if="!currentCollection" id="datatable" class="w-full" :class="{ gridview: gridview }">
     <thead>
       <tr class="bg-gray-100">
         <th v-for="head in headers">{{head}}</th>
@@ -100,7 +100,9 @@
       </tr>
     </tbody>
   </table>
-
+  <div v-else>
+    this is crud
+  </div>
 </section>
 
 <!-- <template id="crudtemplate">

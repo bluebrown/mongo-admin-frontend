@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
@@ -85,7 +85,7 @@ module.exports = (env, options) => ({
               hmr: options.mode === 'development',
             },
           },
-          { loader: 'css-loader', options: { importLoaders: 1 } },
+          {loader: 'css-loader', options: {importLoaders: 1}},
           {
             loader: 'postcss-loader',
             options: {
@@ -109,8 +109,8 @@ module.exports = (env, options) => ({
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
+      'vue$': 'vue/dist/vue.esm.js',
+    },
   },
   devServer: {
     contentBase: path.join(__dirname, 'public'),
@@ -139,4 +139,4 @@ module.exports = (env, options) => ({
     // maxEntrypointSize: 512000,
     // maxAssetSize: 512000,
   },
-}) 
+});
