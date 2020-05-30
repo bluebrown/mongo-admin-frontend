@@ -16,14 +16,15 @@ export const queries = {
         name: cname,
         size: c.storageSize(),
         documents: c.countDocuments({}),
-        keys: c.aggregate([
-          { "$project": { "arrayofkeyvalue": { "$objectToArray":"$$ROOT" }}},
-          { "$unwind": "$arrayofkeyvalue" },
-          { "$group": { "_id": null, "allkeys": { "$addToSet": "$arrayofkeyvalue.k" }}}
-        ]).toArray()[0].allkeys,
       }
     }))`;
   },
 };
 
 export default queries;
+
+//  keys: c.aggregate([
+//   { "$project": { "arrayofkeyvalue": { "$objectToArray":"$$ROOT" }}},
+//   { "$unwind": "$arrayofkeyvalue" },
+//   { "$group": { "_id": null, "allkeys": { "$addToSet": "$arrayofkeyvalue.k" }}}
+// ]).toArray()[0].allkeys,

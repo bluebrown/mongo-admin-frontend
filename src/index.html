@@ -3,12 +3,17 @@
     <div class="flex">
       <div class="flex group">
         <p @click="baseView()"
-         class="text-xl font-semibold cursor-pointer">Databases</p>
+         class="text-xl font-semibold cursor-pointer"> root </p>
         <span class="mx-2 text-xl font-semibold group-last:hidden"> / </span>
       </div>
-      <div class="flex group" v-for="crumb in breadcrumbs">
-        <p @click="databaseView(currentDb)"
-        class="text-xl font-semibold cursor-pointer">{{crumb}}</p>
+      <div v-if="currentDb" class="flex group">
+        <p  @click="databaseView(currentDb)"
+        class="text-xl font-semibold cursor-pointer">{{currentDb}}</p>
+        <span class="mx-2 text-xl font-semibold group-last:hidden"> / </span>
+      </div>
+      <div v-if="currentCollection" class="flex group">
+        <p
+        class="text-xl font-semibold cursor-pointer">{{currentCollection}}</p>
         <span class="mx-2 text-xl font-semibold group-last:hidden"> / </span>
       </div>
     </div>
@@ -101,7 +106,8 @@
     </tbody>
   </table>
   <div v-else>
-    this is crud
+    <textarea name="documents" id="documents">
+    </textarea>
   </div>
 </section>
 
