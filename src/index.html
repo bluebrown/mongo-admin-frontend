@@ -94,7 +94,7 @@
           
           <td class="relative group cursor-pointer">
             <span x-show="item.collections" class="collections" x-text="
-            item.collections ? item.collections.length+' collections' : ''"></span>
+            item.collections?.length ? item.collections.length+' collections' : ''"></span>
             <span x-show="item.documents" class="collections" x-text="item.documents ? item.documents+' documents' : ''"></span>
             <ul
               class="hidden group-hover:block absolute top-0 transform translate-y-10 z-10 w-40 bg-gray-100 rounded-sm shadow-md"
@@ -116,7 +116,18 @@
 
   </table>
   <div x-show="currentCollection">
-    <textarea name="documents" id="documents"> </textarea>
+    <div class="flex -mx-5 mb-3">
+      <div class="flex-1 px-5">
+        <div class="border px-8 py-3 bg-white">stats</div>
+      </div>
+      <div class="flex-1 px-5">
+        <div class="border px-8 py-3 bg-white">
+          <button  @click="collectionTab='import'" class="px-3 py-1 underline ml-1">Import</button>
+          <button  @click="collectionTab='drop' class="px-3 py-1 underline ml-1">Drop</button>
+        </div>
+      </div>
+    </div>
+      <textarea name="documents" id="documents"></textarea>
   </div>
 </section>
 

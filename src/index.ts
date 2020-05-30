@@ -23,6 +23,10 @@ import {connector} from './shared/ts/apiconnection';
 const parse = require('mongodb-query-parser') as any;
 const {post} = connector();
 
+(window as any).AlpineApp = class App {
+  constructor() {}
+};
+
 // eslint-disable-next-line no-unused-vars
 const app = () => ({
   gridview: true,
@@ -32,6 +36,7 @@ const app = () => ({
   currentDb: null as string | null,
   currentCollection: null as string | null,
   collectionData: [] as any[],
+  collectionTab: null as string | null,
   editor: null as CodeMirror.Editor | null,
 
   mounted() {
@@ -72,7 +77,6 @@ const app = () => ({
       this.collectionData = json.result;
       setTimeout(() => {
         this.editor.setValue(JSON.stringify(this.collectionData, null, 2));
-        this.editor.refreshCodeView();
       }, 0);
     }).catch(console.log);
   },
